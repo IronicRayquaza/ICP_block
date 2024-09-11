@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "hello6_backend": {
+      "main": "src/hello6_backend/main.mo",
+      "type": "motoko"
+    },
+    "hello6_frontend": {
+      "dependencies": [
+        "hello6_backend"
+      ],
+      "source": [
+        "src/hello6_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "hello6_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

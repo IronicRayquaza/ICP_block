@@ -1,30 +1,23 @@
-import { useState } from 'react';
-import { hello6_backend } from 'declarations/hello6_backend';
+import React, { useState } from 'react';
+//import BlogList from './components/BlogList';
+import './App.css';
 
 function App() {
-  const [greeting, setGreeting] = useState('');
+  const [posts, setPosts] = useState([
+    { title: 'First Post', content: 'This is the content of the first post.' },
+    { title: 'Second Post', content: 'This is the content of the second post.' }
+  ]);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    hello6_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
+  const handleDeletePost = (index) => {
+    const newPosts = posts.filter((_, i) => i !== index);
+    setPosts(newPosts);
+  };
 
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <div className="App">
+      <h1>My Blog</h1>
+      <BlogList posts={posts} onDeletePost={handleDeletePost} />
+    </div>
   );
 }
 
